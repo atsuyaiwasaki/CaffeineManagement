@@ -3,7 +3,8 @@ class SessionController < ApplicationController
       user = User.find_or_create_from_auth_hash(request.env['omniauth.auth'])
   # request.env['omniauth.auth']に、OmniAuthによってHashのようにユーザーのデータが格納されている
 
-      session[:user_id] = user.id
+      session[:user_hash] = user.add_hash
+      #session
       @userN = user.nickname
 
       print("DEbuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuud")
@@ -17,7 +18,7 @@ class SessionController < ApplicationController
       #@userLog = user.user_drinks.all
     end
     def delete
-      session.delete(:user_id)
+      session.delete(:user_hash)
       redirect_to root_path, alert: 'ログアウトしました'
     end
 end

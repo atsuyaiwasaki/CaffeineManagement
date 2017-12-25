@@ -4,12 +4,12 @@ class User < ApplicationRecord
   def self.find_or_create_from_auth_hash(auth_hash)
 #OmniAuthで取得した各データを代入していく
     provider = auth_hash[:provider]
-    ui_d = auth_hash[:uid]
+    u_id = auth_hash[:uid]
     nickname = auth_hash[:info][:nickname]
     image_url = auth_hash[:info][:image]
     add_hash = Digest::SHA256.hexdigest(ui_d)
 
-    User.find_or_create_by(provider: provider, u_id: ui_d) do |user|
+    User.find_or_create_by(provider: provider, u_id: u_id) do |user|
       #providerとidが一致すれば作らない
       #providerとu_idをＤＢに追加しつうnicnameとimg_URLをついかする
       user.nickname = nickname
