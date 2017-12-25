@@ -5,6 +5,9 @@ class DrinksController < ApplicationController
   # GET /drinks.json
 
   def index
+
+    @user = User.find_by(Digest::SHA256.hexdigest(session[:user_id]))
+
     @users = User.all
     @drinks = Drink.all
     @user_drinks = UserDrink.all
