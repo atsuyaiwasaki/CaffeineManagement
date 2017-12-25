@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Name: MyString
+  cafeinAmount: 1
+  Amount: 1
+
+two:
+  Name: MyString
+  cafeinAmount: 1
+  Amount: 1

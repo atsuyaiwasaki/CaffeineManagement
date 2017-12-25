@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+    <title>CafeMane</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js" ></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js" ></script>
+    <!-- <script src="../../app/assets/javascripts/logTest.js"></script> -->
+    <style type="text/css">/* Chart.js */
+      @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}
+      @keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}
+        .chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;
+        animation:chartjs-render-animation 0.001s;}</style>
+    <style>
+
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+    </style>
+
+    <%= csrf_meta_tags %>
+    <%= include_gon %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <ul class="nav navbar-nav navbar-right">
+    <li><%= link_to 'Twitterでログイン', '/auth/twitter' %></li>
+    <li><%= link_to 'Twitterでログアウト', '/logOut' %></li>
+
+      </ul>
+
+</div>
+<div class="container">
+  <% if flash[:alert] %>
+    <div class="alert alert-success">
+      <%print(@userN)%>
+      <%print(@userN)%>
+
+       <h1>|<%= @userN %>|<%= flash[:alert] %></h1>
+        <!--%=でＨＴＭＬに表示 -->
+        <script type="text/javascripts">
+        <!-- -->
+        </script>
+    </div>
+  <% end %>
+  <%= yield %>
+</div>
+  </body>
+</html>
