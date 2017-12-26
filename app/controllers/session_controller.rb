@@ -4,11 +4,6 @@ class SessionController < ApplicationController
   # request.env['omniauth.auth']に、OmniAuthによってHashのようにユーザーのデータが格納されている
 
       session[:user_hash] = user.add_hash
-      #session
-      @userN = user.nickname
-
-      print("DEbuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuud")
-      print (@userN)
       redirect_to root_path, alert: 'がログインしました'
       #@user = user
 

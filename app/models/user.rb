@@ -7,7 +7,7 @@ class User < ApplicationRecord
     u_id = auth_hash[:uid]
     nickname = auth_hash[:info][:nickname]
     image_url = auth_hash[:info][:image]
-    add_hash = Digest::SHA256.hexdigest(ui_d)
+    add_hash = Digest::SHA256.hexdigest(u_id)
 
     User.find_or_create_by(provider: provider, u_id: u_id) do |user|
       #providerとidが一致すれば作らない

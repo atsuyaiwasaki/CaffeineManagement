@@ -8,10 +8,11 @@ class DrinksController < ApplicationController
     #find_by
 
     @LoginUser = User.find_by(add_hash: session[:user_hash])
+
     @users = User.all
     @drinks = Drink.all
     @user_drinks = UserDrink.all
-    gon.name_list=Drink.find(1);
+    gon.name_list=Drink.find(10);
 
   end
 
