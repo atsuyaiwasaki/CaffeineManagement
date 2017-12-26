@@ -39,10 +39,7 @@
 <div class="container">
   <% if flash[:alert] %>
     <div class="alert alert-success">
-      <%print(@userN)%>
-      <%print(@userN)%>
-
-       <h1>|<%= @LoginUser.nickname %>|<%= flash[:alert] %></h1>
+       <h1><%= @LoginUser.nickname %><%= flash[:alert] %></h1>
         <!--%=でＨＴＭＬに表示 -->
         <script type="text/javascripts">
         <!-- -->
