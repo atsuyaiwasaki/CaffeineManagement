@@ -12,7 +12,7 @@ class DrinksController < ApplicationController
     @users = User.all
     @drinks = Drink.all
     @user_drinks = UserDrink.all
-    gon.name_list=Drink.find(10);
+    #gon.name_list=Drink.find(10);
 
   end
 

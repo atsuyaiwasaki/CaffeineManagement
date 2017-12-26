@@ -14,7 +14,7 @@ var yesterdayH15M00 = 0;
 var yesterdayH18M00 = 0;
 var yesterdayH21M00 = 0;
 var yesterdayH24M00 = 30;
-var name_list = gon.name_list;
+// var name_list = gon.name_list;
 var Daytime = ["7:00","8:00","9:00","10:00","11:00","12:00"];
 'use strict';
 
@@ -287,7 +287,7 @@ function registDrink3() {
 }
 //-----------------GONのテスト-----------------------------------
 function gontest(){
-  console.log(name_list);
+  console.log("gondebug");
 }
 
 /*document.getElementById('randomizeData').addEventListener('click', function() {
