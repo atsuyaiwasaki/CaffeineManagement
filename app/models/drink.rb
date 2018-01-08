@@ -1,4 +1,5 @@
 class Drink < ApplicationRecord
-  has_many :UserDrink,foreign_key: 'Drink_id'
-  has_many :User,:through=>:UserDrink
+  has_many :user_drinks
+  has_many :users ,through: :user_drinks
+
 end
