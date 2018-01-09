@@ -8,14 +8,27 @@ class DrinksController < ApplicationController
     #find_by
 
     @LoginUser = User.find_by(add_hash: session[:user_hash])
+
     #@t = @LoginUser.UserDrink.Dirnk.find_by(10)
     @users = User.all
     @drinks = Drink.all
-    @user_drinks = UserDrink.all
+    @userDrinkLog = @LoginUser.drinks.all
     #gon.name_list=Drink.find(10);
 
   end
-
+  # def drinkLogSet
+  #   require 'json'
+  #   require 'uri'
+  #   require 'net/http'
+  #
+  #   #uri = URI.parse('')
+  #   json = Net::HTTP.get(uri)
+  #   result　= JSON.parse(json)
+  #   #puts result
+  #   #@drink_id= result['d_id'].to_s
+  #   #UserDrink.created_by(user_id:@LoginUser.user_id,drink_id:@drink_id)
+  #
+  # end
   # GET /drinks/1
   # GET /drinks/1.json
   def show

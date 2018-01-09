@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 root :to => 'drinks#index'
   match '/index', to: 'drinks#index', via: [:get, :post]
   match '/cafeMane', to: 'drinks#index', via: [:get, :post]
+  match '/drinkLogSet', to: 'drinks#drinklogset', via: [:get, :post]
   match '/logOut',to: 'session#delete',via:[:get,:post]
   get '/auth/:provider/callback' => 'session#create'
 end

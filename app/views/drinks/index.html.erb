@@ -24,9 +24,8 @@
         <td><img src= "<%= user.image_url %>"></td>
       </tr>
     <% end %>
-    <h1>ドリンクチャージの記録</h1>
-      <tr>
-        <td>ユーザー = <%= @LoginUser.nickname %></td>
+
+
       </tr>
 
   </tbody>
@@ -91,3 +90,12 @@
   </tbody>
 </table>
 <h3><%= @drinks.size %></h3>
+
+<h1>ドリンクチャージの記録</h1>
+
+    ユーザー = <%= @LoginUser.nickname %>
+    <hr>
+    <% @userDrinkLog.each do |drinkLog| %>
+    ドリンク名　<%= drinkLog.name%>
+    飲んだ時間　<%= drinkLog.created_at%><br>
+    <% end %>
