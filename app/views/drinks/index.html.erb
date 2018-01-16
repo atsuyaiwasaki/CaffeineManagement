@@ -2,6 +2,7 @@
 
 <h1>Drinks</h1>
 <h1>ユーザー名一覧</h1>
+<div id="healthRes"></div>
 <table>
   <thead>
     <tr>
@@ -63,7 +64,7 @@
     <input type="button" name="setTime" value="時間遷移" onClick="setTime()">
     <input type="button" name="setNowTime" value="現在の時間" onClick="setNowTime()">
     <input type="button" name="gonTest" value="GONtest" onClick="gontest()">
-
+    <input type="button" name="healthRes" value="ヘルスレスポンス" onClick="()">
 <table>
   <thead>
     <tr>
@@ -96,6 +97,124 @@
     ユーザー = <%= @LoginUser.nickname %>
     <hr>
     <% @userDrinkLog.each do |drinkLog| %>
-    ドリンク名　<%= drinkLog.name%>
+    ドリンク名　<%= Drink.find_by(id:drinkLog.drink_id).name%>
     飲んだ時間　<%= drinkLog.created_at%><br>
     <% end %>
+    <input id=logbtn type = "button" value="最新の記録を消す"　>
+    <script type="text/javascript"src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+
+        $("#logbtn").click(function(){
+
+            $.ajax({
+                type: "POST",
+                port: 3000,
+                url: "./drinkLogDel",
+                data: {
+                    "d_id": 100
+                },
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+                  },
+                success: function(j_data){
+                  location.reload()
+                    // 処理を記述
+
+                }
+            });
+
+        });
+
+    });
+    </script>
+    <div class="wrapper">
+      <div class="container">
+        <div class="top"></div>
+        <div class="bottom">
+          <div class="left">
+            <div class="details">
+              <h1>redbull</h1>
+              <p>250ml</p>
+            </div>
+            <div class="buy"><i class="material-icons">add</i></div>
+          </div>
+          <div class="right">
+            <div class="done
+            "><i class="material-icons">done</i></div>
+            <div class="details">
+              <h1>redbull</h1>
+              <p>￥200</p>
+            </div>
+            <div class="remove"><i class="material-icons">set</i></div>
+          </div>
+        </div>
+      </div>
+      <div class="inside">
+        <div class="icon"><i class="material-icons">info</i></div>
+        <div class="contents">
+          <table>
+            <tr>
+              <th>Width</th>
+              <th>Height</th>
+            </tr>
+            <tr>
+              <td>3000mm</td>
+              <td>4000mm</td>
+            </tr>
+            <tr>
+              <th>Something</th>
+              <th>Something</th>
+            </tr>
+            <tr>
+              <td>200mm</td>
+              <td>200mm</td>
+            </tr>
+            <tr>
+              <th>Something</th>
+              <th>Something</th>
+            </tr>
+            <tr>
+              <td>200mm</td>
+              <td>200mm</td>
+            </tr>
+            <tr>
+              <th>Something</th>
+              <th>Something</th>
+            </tr>
+            <tr>
+              <td>200mm</td>
+              <td>200mm</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+<script type="text/javascript">
+  $('.buy').click(function(){
+    $('.bottom').addClass("clicked");
+  });
+
+  $('.remove').click(function(){
+    //$('.bottom').removeClass("clicked");
+    $.ajax({
+        type: "POST",
+        port: 3000,
+        url: "./drinkLogSet",
+        data: {
+            "d_id": 100
+          },
+          beforeSend: function(xhr){
+            xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+          },
+        success: function(j_data){
+          location.reload();
+          healthCheck();
+            // 処理を記述
+
+        }
+    });
+  });
+</script>
+<%= @res.first_item.get('ItemAttributes/Title') %>
+<img src="<%= @res.first_item.get('MediumImage/URL') %>" />

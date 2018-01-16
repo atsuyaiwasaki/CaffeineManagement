@@ -1,19 +1,56 @@
 var jikan = new Date();
 var nowHour = jikan.getHours();
-var todayH6M00 = 0;
-var todayH9M00 = 0;
-var todayH12M00 = 0;
-var todayH15M00 = 0;
-var todayH18M00 = 0;
-var todayH21M00 = 0;
-var todayH24M00 = 0;
-var yesterdayH6M00 = 0;
-var yesterdayH9M00 = 0;
-var yesterdayH12M00 = 0;
-var yesterdayH15M00 = 0;
-var yesterdayH18M00 = 0;
-var yesterdayH21M00 = 0;
-var yesterdayH24M00 = 30;
+var dataListEv = [];
+var timeSet = [];
+var evTime =1;
+var minTime = 0;
+var maxTime = (24/evTime)+1;
+var drinkTimeData  = gon.drinkdataset;
+
+for(var ini=minTime;ini<maxTime;ini++){
+	dataListEv[ini]=0;
+}
+for(var ev=minTime;ev<maxTime;ev++){
+	timeSet[ev]='"'+ev*evTime+':00"'
+	var showTime = ev*evTime;
+
+	var daC = 0;
+	drinkTimeData.forEach(function(data){
+		if(showTime==drinkTimeData[daC].timeh){
+			amountInMax = drinkTimeData[daC].cafeinAmount+dataListEv[ev+1];
+			amountInMin = amountInMax/2;
+			amountDecre1h = amountInMin/6;
+
+			dataListEv[ev+1]= amountInMax;
+			console.log(amountInMax);
+			var phcon = 2;
+			var boo = true;
+				while(boo){
+					console.log(phcon+"----"+dataListEv[ev+phcon]);
+					 if(phcon<6&&dataListEv[ev+phcon]>=0){
+					  			dataListEv[ev+phcon]= dataListEv[ev+phcon-1]-amountDecre1h;
+									console.log("if-------------------"+dataListEv[ev+phcon]+"---------------------");
+									phcon+=1;
+								}else if(dataListEv[ev+phcon]>=0){
+									dataListEv[ev+phcon]= dataListEv[ev+phcon-1]-amountDecre1h/2;
+									if(dataListEv[ev+phcon]<0){
+									 dataListEv[ev+phcon]=0;
+									 }
+									phcon+=1;
+									console.log("else-----------------"+dataListEv[ev+phcon]+"-------------------------");
+								}else {
+										break;}
+					}
+				//dataListEv[phcon]<0)
+					console.log(boo);
+				 console.log(phcon);
+				phcon = 0;
+			console.log();
+		};
+		daC += 1 ;
+	})
+};
+
 // var name_list = gon.name_list;
 var Daytime = ["7:00","8:00","9:00","10:00","11:00","12:00"];
 'use strict';
@@ -166,46 +203,44 @@ window.chartColors = {
 
 //-----------------------------------初期設定---------------------------
 var config = {
-    type: 'line',
-    data: {
-        labels: ["6:00", "9:00", "12:00", "15:00", "18:00", "21:00", "24:00"],
-        datasets: [{
+    	type: 'line',
+    	data: {
+        // labels: ["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"]
+				labels: timeSet,
+				datasets: [{
             label: "2017/11/28",
             backgroundColor: window.chartColors.red,
             borderColor: window.chartColors.red,
             scaleFontColor:"rgba(0,0,0,0.2)",
             fill: false,
-            data: [
-              todayH6M00,
-              todayH9M00,
-              todayH12M00,
-              todayH15M00,
-              todayH18M00,
-              todayH21M00,
-              todayH24M00
-            ],
+						data: dataListEv,
+            // data: [
+						// 	// 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						// 	 // for (var time = 0; time < 7; time += 1) {
+						// 	 // 	time*10,
+						// 	 // 								}
+            //   todayH6M00,
+            //   todayH9M00,
+            //   todayH12M00,
+            //   todayH15M00,
+            //   todayH18M00,
+            //   todayH21M00,
+            //   todayH24M00
+            // ],
         }
         , {
             label: "2017/11/27",
             backgroundColor: window.chartColors.blue,
             borderColor: window.chartColors.blue,
             fill: false,
-            data: [
-            yesterdayH6M00,
-            yesterdayH9M00,
-            yesterdayH12M00,
-            yesterdayH15M00,
-            yesterdayH18M00,
-            yesterdayH21M00,
-            yesterdayH24M00
-            ],
+            data: dataListEv,
         }]
     },
     options: {
         responsive: true,
         title:{
             display:true,
-            text:'カフェイの血中濃度'
+            text:'カフェインの血中濃度'
         },
         scales: {
             xAxes: [{
@@ -227,7 +262,7 @@ var config = {
               },
               ticks: {
                   min :0,
-                  max:180,
+									max :400,
                   stepSize:30
               }
             }]
@@ -235,6 +270,16 @@ var config = {
     }
 };
 //console.log(config);//-----------------------------ﾃﾞﾊﾞｯｸﾞ-------------------------------------------------
+function healthCheck(){
+	document.getElementById("healthRes").textContent="あ、ああ...死ぬ"
+	// if(){
+	// 	document.getElementById
+	// }else if(){
+  //
+	// }else if(){
+  //
+	// }
+}
 function add(i) {
   //console.log(i);
     return i+20;
@@ -287,7 +332,8 @@ function registDrink3() {
 }
 //-----------------GONのテスト-----------------------------------
 function gontest(){
-  console.log("gondebug");
+
+  console.log(testTime);
 }
 
 /*document.getElementById('randomizeData').addEventListener('click', function() {
