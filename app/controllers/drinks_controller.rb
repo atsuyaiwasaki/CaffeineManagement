@@ -47,13 +47,13 @@ class DrinksController < ApplicationController
     # gon.testLogMin = testLog.strftime("%M")
     # gon.testLogSec = testLog.strftime("%S")
     #------------AWS-------------------------------------
-    # @res = Amazon::Ecs.item_search("検索",
-    #     :search_index => 'Books',
-    #     #BooksやDVDなど、検索したいものを search_index で指定
-    #     :response_group => 'Medium',
-    #     #response_group は、Small, Medium, Large が扱える
-    #     :country => 'jp'
-    # )
+    @res = Amazon::Ecs.item_search("検索",
+        :search_index => 'Books',
+        #BooksやDVDなど、検索したいものを search_index で指定
+        :response_group => 'Medium',
+        #response_group は、Small, Medium, Large が扱える
+        :country => 'jp'
+    )
   end
 
    def drinkLogDel
