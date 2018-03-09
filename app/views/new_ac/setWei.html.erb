@@ -1,0 +1,29 @@
+<p>体重を入力</p>
+<input id="setWei" type="number" name="setWei" value="60">
+<p>年齢を年齢入力</p>
+<input id="setAge" type="number" name="setAge" value="20">
+<input id="setWeight"  type="button" value="カフェインマネジメントを始める">
+<script type="text/javascript">
+  $("#setWeight").click(function(){
+    var Ageval =document.getElementById('setAge').value
+    var Weival =document.getElementById('setWei').value
+    
+    $.ajax({
+        type: "POST",
+        port: 3000,
+        url: "./dataSet",
+        data: {
+            "age":Ageval,
+            "wei":Weival
+          },
+          beforeSend: function(xhr){
+            xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+          },
+        success: function(j_data){
+          location.reload();
+            // lndexにとばす
+
+        }
+    });
+  });
+</script>

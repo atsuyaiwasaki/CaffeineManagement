@@ -16,11 +16,15 @@ module CafeMane
     #   #:associate_tag => '',
 
     # }
-     Amazon::Ecs.configure do |options|
-       options[:AWS_access_key_id] = ENV["AWS_ACCESS_KEYID"]
-       options[:AWS_secret_key] = ENV["AWS_SECRET_KEY"]
-       options[:associate_tag] = ENV["ASSOCIATE_TAG_ID"]
-     end
+     # Amazon::Ecs.configure do |options|
+     #   # options[:AWS_access_key_id] = ENV["AWS_ACCESS_KEYID"]
+     #   # options[:AWS_secret_key] = ENV["AWS_SECRET_KEY"]
+     #   # options[:associate_tag] = ENV["ASSOCIATE_TAG_ID"]
+     #
+     #   # options[:AWS_access_key_id] = '直打ち'
+     #   # options[:AWS_secret_key] = '直打ち'
+     #   # options[:associate_tag] =  '直打ち'
+     # end
     config.load_defaults 5.1
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local

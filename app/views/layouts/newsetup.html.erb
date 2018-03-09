@@ -27,36 +27,9 @@
     </style>
 
     <%= csrf_meta_tags %>
-    <%= include_gon %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'new_ac_fol/new_ac', media: 'all'%>
+    <!-- <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> -->
 
   </head>
-
-  <body>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-  <ul class="nav navbar-nav navbar-right">
-    <%if session[:user_hash].blank?%>
-      <li><%= link_to 'Twitterでログイン', '/auth/twitter' %></li>
-    <%else%>
-      <li><%= link_to 'Twitterでログアウト', '/logOut' %></li>
-
-    <%end%>
-
-      </ul>
-
-</div>
-<div class="container1">
-  <% if flash[:alert] %>
-    <div class="alert alert-success">
-       <h1><%= @LoginUser.nickname %><%= flash[:alert] %></h1>
-        <!--%=でＨＴＭＬに表示 -->
-        <script type="text/javascripts">
-        <!-- -->
-        </script>
-    </div>
-  <% end %>
-  <%= yield %>
-</div>
-  </body>
+<body><%= yield %></body>
 </html>

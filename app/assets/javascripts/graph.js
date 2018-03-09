@@ -1,59 +1,141 @@
 var jikan = new Date();
+var month = jikan.getMonth()+1;
+var today = jikan.getDate();
 var nowHour = jikan.getHours();
+var dayLabel =month+'/'+today;
+var Tomorrow =parseInt(today)+1;
+var TomorrowLab =month+'/'+Tomorrow;
 var dataListEv = [];
+var TomoList = [];
 var timeSet = [];
 var evTime =1;
 var minTime = 0;
 var maxTime = (24/evTime)+1;
 var drinkTimeData  = gon.drinkdataset;
+var DaySafe =   gon.userCaffeinDayMax;
+var OneTimeSafe = gon.userCaffeinOneTimeMax;
+var Step = 50;
+var maxCafeAmount = 0;
+var testpass = gon.testpass;
+var timelist = gon.timelist;
+var colorlist = [];
+var message ;
+var expr;
+var areaColor;
+var nowTimeLine =[];
+var data5hview = [];
 
+console.log("testpass"+testpass);
+
+//各時刻初期化
 for(var ini=minTime;ini<maxTime;ini++){
 	dataListEv[ini]=0;
+	TomoList[ini] =0;
+	nowTimeLine[ini]='#00000010';
 }
+nowTimeLine[nowHour]='blue';
 for(var ev=minTime;ev<maxTime;ev++){
+	//各時刻表示初期化
 	timeSet[ev]='"'+ev*evTime+':00"'
-	var showTime = ev*evTime;
-
+	var showTime = ev*evTime;//表示時刻
+	//
 	var daC = 0;
 	drinkTimeData.forEach(function(data){
 		if(showTime==drinkTimeData[daC].timeh){
 			amountInMax = drinkTimeData[daC].cafeinAmount+dataListEv[ev+1];
 			amountInMin = amountInMax/2;
-			amountDecre1h = amountInMin/6;
+			amountDecre1h = amountInMin/6;//カフェインの半減期は６時間と仮定
+			dataListEv[ev+1]= amountInMax;//飲んだ１時間後が最大
+			maxCafeAmount = amountInMax;//
 
-			dataListEv[ev+1]= amountInMax;
-			console.log(amountInMax);
 			var phcon = 2;
 			var boo = true;
 				while(boo){
-					console.log(phcon+"----"+dataListEv[ev+phcon]);
+					//6時間経過前&&データが0以上なら1時間前のデータから１時間分減少
 					 if(phcon<6&&dataListEv[ev+phcon]>=0){
 					  			dataListEv[ev+phcon]= dataListEv[ev+phcon-1]-amountDecre1h;
-									console.log("if-------------------"+dataListEv[ev+phcon]+"---------------------");
+
+									if(ev+phcon==24){
+										TomoList[0]=dataListEv[ev+phcon];
+										alert();
+									}else if(ev+phcon>=24){
+										tomoTime = ev+phcon-24;
+										TomoList[tomoTime]=TomoList[tomoTime-1]-amountDecre1h;
+									}
 									phcon+=1;
-								}else if(dataListEv[ev+phcon]>=0){
+
+								}else if(dataListEv[ev+phcon]>=0||TomoList[ev+phcon-24]>=0){
 									dataListEv[ev+phcon]= dataListEv[ev+phcon-1]-amountDecre1h/2;
-									if(dataListEv[ev+phcon]<0){
+
+									if(ev+phcon==24){
+										TomoList[0]=dataListEv[ev+phcon];
+									}else if(ev+phcon>24){
+										tomoTime = ev+phcon-24;
+										TomoList[tomoTime]=TomoList[tomoTime-1]-amountDecre1h/2;
+									}
+									//データがゼロ未満のとき０を代入
+									if(dataListEv[ev+phcon]<0||TomoList[ev+phcon-24]<0){
 									 dataListEv[ev+phcon]=0;
-									 }
+									 TomoList[ev+phcon-24]=0;
+									}
+
 									phcon+=1;
-									console.log("else-----------------"+dataListEv[ev+phcon]+"-------------------------");
+
 								}else {
-										break;}
+										break;
+									}
 					}
-				//dataListEv[phcon]<0)
-					console.log(boo);
-				 console.log(phcon);
+
 				phcon = 0;
-			console.log();
+
 		};
 		daC += 1 ;
 	})
 };
 
+
+onestep = OneTimeSafe+Step;
+console.log("safe"+OneTimeSafe);
+onestep2 = OneTimeSafe+Step*2;
+safelength = OneTimeSafe-dataListEv[nowHour+1];
+overlength = dataListEv[nowHour+1]-OneTimeSafe;
+console.log(maxCafeAmount+"maxCafeAmount");
+if(maxCafeAmount>=onestep2){
+	console.log("overStep2");
+	console.log("Over"+overlength+"mg");
+	expr = "カフェインの摂取量が許容範囲を超えていま";
+	areaColor = '#FF4300';
+}else if(maxCafeAmount>=onestep){
+	console.log("overStep1");
+	console.log("Over"+overlength+"mg");
+	expr = "カフェインの摂取量が多いので控えましょう";
+	areaColor = '#FFF50';
+}else if(maxCafeAmount>=OneTimeSafe||maxCafeAmount>=0){
+	expr = "緑の線を目安にカフェインを摂取しましょう";
+	console.log("overSafe");
+	console.log("Over"+overlength+"mg");
+	areaColor = '#00ff7c'
+
+}else{
+	expr = "ドリンクを選んでカフェインの推移を確認しましょう";
+	areaColor = '#65b6e2';
+
+	console.log("まだ攻めれる"+safelength+"mgいけるはず")
+	console.log(nowHour+"時："+dataListEv[nowHour]);
+	console.log(nowHour+1+"時："+dataListEv[nowHour+1]);
+
+}
+function message() {
+	message = document.getElementById("message");
+	Area = document.getElementById("messageArea");
+	Area.style.backgroundColor = areaColor;
+	message.innerHTML='<h1>'+expr+'</h1>';
+};
+function backSet(){
+	document.body.style.backgroundImage = 'linear-gradient(-90deg, #FD4E66, #D8FF57)';
+}
 // var name_list = gon.name_list;
-var Daytime = ["7:00","8:00","9:00","10:00","11:00","12:00"];
-'use strict';
+
 
 window.chartColors = {
 	red: 'rgb(255, 99, 132)',
@@ -179,9 +261,7 @@ window.chartColors = {
 	};
 
 	// DEPRECATED
-	window.randomScalingFactor = function() {
-		return Math.round(Samples.utils.rand(-100, 100));
-	};
+
 
 	// INITIALIZATION
 
@@ -200,58 +280,55 @@ window.chartColors = {
 	/* eslint-enable */
 
 }(this));
-
+data5hview = [0,100,0,100,0];
 //-----------------------------------初期設定---------------------------
 var config = {
     	type: 'line',
     	data: {
-        // labels: ["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"]
 				labels: timeSet,
 				datasets: [{
-            label: "2017/11/28",
+            label: dayLabel.toString(),
             backgroundColor: window.chartColors.red,
             borderColor: window.chartColors.red,
             scaleFontColor:"rgba(0,0,0,0.2)",
             fill: false,
 						data: dataListEv,
-            // data: [
-						// 	// 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						// 	 // for (var time = 0; time < 7; time += 1) {
-						// 	 // 	time*10,
-						// 	 // 								}
-            //   todayH6M00,
-            //   todayH9M00,
-            //   todayH12M00,
-            //   todayH15M00,
-            //   todayH18M00,
-            //   todayH21M00,
-            //   todayH24M00
-            // ],
         }
         , {
-            label: "2017/11/27",
+            label: TomorrowLab.toString(),
             backgroundColor: window.chartColors.blue,
             borderColor: window.chartColors.blue,
             fill: false,
-            data: dataListEv,
+            data: TomoList,
         }]
     },
     options: {
         responsive: true,
         title:{
             display:true,
-            text:'カフェインの血中濃度'
+            text:'カフェインの血中濃度',
+						fontSize:30
         },
         scales: {
             xAxes: [{
                 drawBorder:false,
                 gridLines:{
-              }
+									color: nowTimeLine
+              	},
+								scaleLabel: {                 //軸ラベル設定
+                       display: true,             //表示設定
+                       labelString: '<<時刻>>',  //ラベル
+                       fontSize: 30               //フォントサイズ
+                    },
+										ticks:{
+											fontSize:30
+										},
+
             }],
             yAxes: [{
               gridLines:{
                   highlightVerticalLine: true,
-                  color: ['', 'red', 'orange', 'green','']
+                  color: ['', 'red', 'orange', 'green']
                   /*color:fuction(context){
                     var index = context.dataIndex;
                     var value = context.dataset.data[index];
@@ -260,11 +337,17 @@ var config = {
                            'green';
                   }*/
               },
+							scaleLabel: {                 //軸ラベル設定
+										 display: true,             //表示設定
+										 labelString: 'mg',  //ラベル
+										 fontSize: 40               //フォントサイズ
+									},
               ticks: {
                   min :0,
-									max :400,
-                  stepSize:30
-              }
+									max : OneTimeSafe+Step*2,
+                  stepSize: Step,
+									fontSize:30
+              },
             }]
         }
     }
@@ -291,7 +374,6 @@ window.onload = function() {
 var i=nowHour;
 var setC  = "blue"
 function setNowTime(){
-  console.log(i-1+":00");
   nowDisplay=[i-3+":00",i-2+":00",i-1+":00",i+":00",i+1+":00",i+2+"00",i+3+"00"];
   config.options.scales.xAxes[0].gridLines.color=["","","", setC, "", "",""];
   config.options.scales.xAxes[0].gridLines.lineWidth=null;
@@ -335,7 +417,12 @@ function gontest(){
 
   console.log(testTime);
 }
-
+function getSafe(){
+	//safelength
+	v = 200+1;
+	console.log(v);
+	return v
+}
 /*document.getElementById('randomizeData').addEventListener('click', function() {
     config.data.datasets.forEach(function(dataset) {
         dataset.data = dataset.data.map(function() {

@@ -1,20 +1,26 @@
 class DrinksController < ApplicationController
   before_action :set_drink, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-
   # GET /drinks
   # GET /drinks.json
-
   def index
-    #find_by
     require 'str_to_hash'
 
+    timelist = {}
+    for num in 0..24 do
+      timelist.store(num,0)
+    end
+
+    gon.timelist = timelist
     @LoginUser = User.find_by(add_hash: session[:user_hash])
     #@t = @LoginUser.UserDrink.Dirnk.find_by(10)
-    @users = User.all
+    #@users = User.all
     @drinks = Drink.all
     @userDrinkLog = @LoginUser.user_drinks.all
+    userweight = @LoginUser.weght
+    gon.userCaffeinDayMax = userweight * 5.7
+    gon.userCaffeinOneTimeMax = userweight * 3
+    safeline = userweight * 3
     today = 0.day.ago.all_day
     yesterday =1.day.ago.all_day
     drinkdata = @LoginUser.user_drinks.where(created_at:today)
@@ -24,38 +30,73 @@ class DrinksController < ApplicationController
     dataList = []
     i =0;
     drinkdata.each do |driData|
-      puts i
       sentdata[i]["timeh"] = driData.created_at.strftime("%H")
-      puts sentdata[i]["timeh"]
       sentdata[i]["name"] = driData.drink.name
-      puts driData.drink.cafeinAmount
       sentdata[i]["cafeinAmount"] = driData.drink.cafeinAmount
+      #------jsで記述したカフェインの代謝計算-------
+      maxtime = sentdata[i]["timeh"].to_i
+      setcafeMAX = sentdata[i]["cafeinAmount"]+timelist[maxtime+1]
+
+      setcafehalf =setcafeMAX/2
+      dec1h =  setcafehalf/6
+      passh = 1
+      boo = true
+        while boo do
+          over24 = maxtime+passh
+          if over24 > 24
+           break
+          end
+
+          if passh==1
+            timelist[maxtime+1] = setcafeMAX
+            passh += 1
+
+          elsif passh >1 && passh < 6 && timelist[maxtime+passh]>= 0
+            set = timelist[maxtime+passh-1]-dec1h
+            timelist[maxtime+passh] = set
+            passh += 1
+
+          else timelist[maxtime+passh]>=0
+            set = timelist[maxtime+passh-1]-dec1h/2
+            timelist[maxtime+passh] = set
+
+            if timelist[maxtime+passh]<0
+              timelist[maxtime+passh] =0
+              break
+            end
+            passh +=1
+        end
+      end
+      #timelist[maxtime+1] += setcafeMAX/
       kakunin1 = sentdata[i].to_s
-      puts kakunin1.to_h
       dataList.push(kakunin1.to_h)
       i+=1
     end
-    puts "-----------DataCheck2---------------"
-    puts dataList
+
+    @D103 = Drink.find_by(id:104)
     gon.drinkdataset = dataList
     #puts drinkdata.drink.name
     #gon.name_list=Drink.find(10);
     # testLog = DateTime.now.to_s(:time)
     #gon.testLog.to_s(:time)
     testLog = DateTime.now
-    gon.testLogHour = testLog.strftime("%H")
-    # gon.testLogMin = testLog.strftime("%M")
-    # gon.testLogSec = testLog.strftime("%S")
-    #------------AWS-------------------------------------
-    @res = Amazon::Ecs.item_search("検索",
-        :search_index => 'Books',
-        #BooksやDVDなど、検索したいものを search_index で指定
-        :response_group => 'Medium',
-        #response_group は、Small, Medium, Large が扱える
-        :country => 'jp'
-    )
-  end
-
+    nowstrh = testLog.strftime("%H")
+    gon.testLogHour = nowstrh
+    nowinth = nowstrh.to_i
+    poor = safeline-timelist[nowinth+1]
+    gon.poor = poor
+    @num = poor
+   end
+   def  select
+     require 'uri'
+     require 'net/http'
+     testdata = params[:test]
+     puts "test--------------------test---------"
+     puts testdata
+     @testdata = testdata
+     gon.testpass = testdata
+     redirect_to controller: 'drinks' , action:'index'
+   end
    def drinkLogDel
      require 'json'
      require 'uri'
@@ -65,14 +106,9 @@ class DrinksController < ApplicationController
      puts "------------put---------------"
      puts @LoginUser.id
      u_id = @LoginUser.id
-
-    # uri = URI.parse('/drinkLogSet')
-    #  json = Net::HTTP.get(uri)
-    #  result　= JSON.parse(json)
-    #  puts result
-     drink_id = params[:d_id] #result['d_id'].to_s
+     drink_id = params[:d_id]
      User.find(u_id).user_drinks.last.destroy
-  #
+
    end
    def drinkLogSet
      require 'json'
@@ -94,6 +130,7 @@ class DrinksController < ApplicationController
    end
   # GET /drinks/1
   # GET /drinks/1.json
+
   def show
 
   end
@@ -101,6 +138,7 @@ class DrinksController < ApplicationController
   # GET /drinks/new
   def new
     @drink = Drink.new
+    redirect_to action: new
   end
 
   # GET /drinks/1/edit
@@ -157,4 +195,9 @@ class DrinksController < ApplicationController
     def drink_params
       params.require(:drink).permit(:name, :cafeinAmount, :Amount)
     end
+    def newAc
+
+    end
+
+
 end
