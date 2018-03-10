@@ -3,11 +3,163 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 html, body{
   margin: 0;
-  //background-image:linear-gradient(-90deg, #4EFD86, #578CFF);
-  //opacity: 0.2;
+  width: auto;
+  height: 100%;
+}
+#pageTop{
+  width: auto;
+  height: 100%
 }
 #manu{
     width: auto;
-    height: 120px;
-    background-color:#EDFFFF;
+    height:8%;
+    text-align: center;
+}
+.top-text{
+  margin:auto;
+  font-size: 100px;
+  font-family: "メイリオ", sans-serif;
+  font-weight:700;
+  color: #000000;
+    }
+.innerText{
+  font-size: 140px;
+  font-family: "メイリオ", sans-serif;
+  color: #000000;
+  font-weight: bolder;
+  @media screen and (max-width: 1500px) {
+    -webkit-writing-mode: vertical-rl;
+        -ms-writing-mode: tb-rl;
+            writing-mode: vertical-rl;
+  }
+  @media screen and (min-width: 1500px) {
+    font-size: 300px;
+  }
+
+
+}
+#expl1{
+  width: auto;
+  min-width: 60%;
+  height:100%;
+  position: relative;
+
+}
+
+#expl2{
+  width: auto;
+  min-width: 60%;
+  height:100%;
+  position: relative;
+}
+#expl1-1{
+  opacity: 0.85;
+  height: 100%;
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+	align-items: center;
+  justify-content: center;
+}
+#expl1-2{
+  height: 100%;
+}
+#expl2-1{
+  height: 100%;
+}
+#expl2-2{
+  opacity: 0.85;
+  height: 100%;
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+	align-items: center;
+  justify-content: center;
+
+}
+
+
+#expl1-2-cun{
+  max-width: 80%;
+  max-height: 40%;
+  margin:auto;
+  position:absolute;
+  top:10%;
+}
+#expl1-2-pc{
+  width: 70%;
+  max-width: 80%;
+  max-height: 50%;
+  margin:auto;
+  position:absolute;
+  bottom:10%;
+}
+#expl2-1-time{
+  // width: 100%;
+  width: 70%;
+  max-width: 80%;
+  max-height: 40%;
+  margin:auto;
+  bottom:10%;
+  position:absolute;
+}
+#expl2-1-phone{
+  width: 70%;
+  max-width: 80%;
+  max-height: 40%;
+  margin:auto;
+  position:absolute;
+  top:10%;
+}
+#login-con{
+    width: auto;
+    height:12%;
+}
+#login{
+    position: relative;
+    width:100%;
+    height:100%;
+    text-align: center;
+    top:5%;
+}
+#twitter_btn{
+   height:2em;
+   top:2em;
+   left:2em;
+   bottom:2em;
+   // text-align: center;
+}
+#login-start{
+  color: #000000;
+  text-align: center;
+  float: left;
+}
+.square_btn {
+
+    text-align: center;
+    background-color: #ffffff;
+    display: inline-block;
+    padding: 5% 20%;
+    text-decoration: none;
+    color: #67c5ff;
+    border: solid 2px #67c5ff;
+    border-radius: 20px;
+    transition: .4s;
+
+    font-size: 3em;
+    font-family: "メイリオ", sans-serif;
+    color: #000000;
+    font-weight: bolder;
+
+    @media screen and (min-width: 1500px) {
+      font-size: 5em;
+    }
+
+}
+
+.square_btn:hover {
+    background: #67c5ff;
+    color: white;
 }

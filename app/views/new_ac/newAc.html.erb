@@ -1,25 +1,51 @@
-<div class="container-fluid">
-  <div class="row" id="manu">
+<div class="container-fluid" id="pageTop">
+  <!-- <div class="row" id="manu">
     <div class="col-xs-12 col-md-12 col-lg-12 col-xl-12">
-      <h1>カフェマナ</h1>
+      <p class="top-text">カフェインマネジメントへようこそ</p>
+      <a href="#" class="square_btn">Twitter<%=image_tag("social-icons-01.png",:id=>"twitter_btn",:alt=>"twitter_btn")%></a>
+
+    </div>
+  </div> -->
+  <div class="row" id="expl1"  >
+        <div class="col-xs-10 col-md-10 col-lg-10 col-xl-10" id="expl1-1" style="background-image:url(<%= asset_path "expl1-1.jpg" %>)"/>
+          <p class="innerText">
+            エナジードリンクで
+            <br>
+            頑張る人へ
+          </p>
+        </div>
+      <div class="col-xs-2 col-md-2 col-lg-2 col-xl-2" id="expl1-2">
+        <%=image_tag("expl1-2-cun.png",:id=>"expl1-2-cun",:alt=>"cun")%>
+        <%=image_tag("expl1-2-pc.png",:id=>"expl1-2-pc",:alt=>"pc")%>
+      </div>
+  </div>
+  <div class="row" id="expl2"  >
+    <div class="col-xs-2 col-md-2 col-lg-2 col-xl-2" id="expl2-1" >
+            <%=image_tag("expl2-1-phone.png",:id=>"expl2-1-phone",:alt=>"phone")%>
+            <%=image_tag("expl2-1-time.png",:id=>"expl2-1-time",:alt=>"time")%>
+    </div>
+    <div class="col-xs-10 col-md-10 col-lg-10 col-xl-10" id="expl2-2" style="background-image:url(<%= asset_path "deviceDemo.jpg" %>)"/>
+      <p class="innerText" style="color:#FFFFFF">
+        カフェインも
+        <br>
+        見える化しよう
+      </p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-xs-8 col-md-8 col-lg-8 col-xl-8" style="background-color:#EDF7FF;">
-      <%=image_tag("social-icons-01.png",:size=>"5*5",:alt=>"twitter_btn")%>
+  <div class="row" id="login-con">
+    <div class="col-xs-12 col-md-12 col-lg-12 col-xl-12" id="login">
+      <a href="#" class="square_btn">Twitterでログイン<%=image_tag("social-icons-01.png",:id=>"twitter_btn",:alt=>"twitter_btn")%></a>
     </div>
+  </div>
+
+  <!-- <div class="row" id="expl2">
     <div class="col-xs-4 col-md-4 col-lg-4 col-xl-4" style="background-color:#FFF7FF;">
       <%=image_tag("social-icons-01.png",:size=>"5*5",:alt=>"twitter_btn")%>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-4 col-md-4 col-lg-4 col-xl-4" style="background-color:#FFF7FF;">
-      <%=image_tag("social-icons-01.png",:size=>"5*5",:alt=>"twitter_btn")%>
-    </div>
     <div class="col-xs-8 col-md-8 col-lg-8 col-xl-8" style="background-color:#EDF7FF;">
       <%=image_tag("social-icons-01.png",:size=>"5*5",:alt=>"twitter_btn")%>
     </div>
-  </div>
+  </div> -->
 
   <!-- <p>カフェインマネジメントを始める</p> -->
   <!-- <a href="#" class="twitter_btn">
@@ -27,3 +53,9 @@
   </a> -->
 
 </div>
+<script>
+    window.addEventListener("load",function(event) {
+        document.body.style.backgroundImage = 'linear-gradient(-90deg, #14DCFF, #B7BAD7)';
+         $('.innerText').hide().fadeIn(1500);
+    });
+</script>
