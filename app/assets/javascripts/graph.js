@@ -43,7 +43,7 @@ for(var ev=minTime;ev<maxTime;ev++){
 	var daC = 0;
 	drinkTimeData.forEach(function(data){
 		if(showTime==drinkTimeData[daC].timeh){
-			amountInMax = drinkTimeData[daC].cafeinAmount+dataListEv[ev+1];
+			amountInMax = drinkTimeData[daC].cafeinamount+dataListEv[ev+1];
 			amountInMin = amountInMax/2;
 			amountDecre1h = amountInMin/6;//カフェインの半減期は６時間と仮定
 			dataListEv[ev+1]= amountInMax;//飲んだ１時間後が最大

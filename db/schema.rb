@@ -14,13 +14,13 @@ ActiveRecord::Schema.define(version: 20180210090915) do
 
   create_table "drinks", force: :cascade do |t|
     t.string "name"
-    t.integer "cafeinAmount"
-    t.integer "Amount"
+    t.integer "cafeinamount"
+    t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "outimgLink"
-    t.text "imgLink"
-    t.text "productLink"
+    t.text "outimglink"
+    t.text "imglink"
+    t.text "productlink"
   end
 
   create_table "user_drinks", force: :cascade do |t|

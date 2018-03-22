@@ -35,10 +35,10 @@ class DrinksController < ApplicationController
     drinkdata.each do |driData|
       sentdata[i]["timeh"] = driData.created_at.strftime("%H")
       sentdata[i]["name"] = driData.drink.name
-      sentdata[i]["cafeinAmount"] = driData.drink.cafeinAmount
+      sentdata[i]["cafeinamount"] = driData.drink.cafeinamount
       #------jsで記述したカフェインの代謝計算-------
       maxtime = sentdata[i]["timeh"].to_i
-      setcafeMAX = sentdata[i]["cafeinAmount"]+timelist[maxtime+1]
+      setcafeMAX = sentdata[i]["cafeinamount"]+timelist[maxtime+1]
 
       setcafehalf =setcafeMAX/2
       dec1h =  setcafehalf/6
