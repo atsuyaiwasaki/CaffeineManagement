@@ -21,6 +21,6 @@ class NewAcController < ApplicationController
     agedata = params[:age]#後日実装
     loginSettingUser.weght = weightdata
     loginSettingUser.save
-    redirect_to controller: 'index', action: 'index'
+    redirect_to controller: 'drinks', action: 'index'
   end
 end
