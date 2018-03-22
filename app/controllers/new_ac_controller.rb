@@ -9,7 +9,7 @@ class NewAcController < ApplicationController
   def dataSet
     require 'json'
     require 'uri'
-    require 'net/http'
+    require 'net/https'
 
     loginSettingUser = User.find_by(add_hash: session[:user_hash])
 
