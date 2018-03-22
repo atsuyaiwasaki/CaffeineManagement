@@ -86,7 +86,7 @@
 </div>
 <div class="row" id="drink-row"  >
   <div class="col-xs-12 col-md-12 col-lg-12 col-xl-12" id="drink" >
-    <h2>オススメ集中ドリンク</h2>
+    <h2>オススメ集中ドリンク<%=@num%></h2>
     <div class=buttontable>
       <tbody >
         <% @drinks.order('cafeinamount DESC').where("cafeinamount<?",@num).each do |drink| %>
