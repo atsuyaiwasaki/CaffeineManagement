@@ -21,6 +21,7 @@ var timelist = gon.timelist;
 var colorlist = [];
 var message ;
 var expr;
+var inf;
 var areaColor;
 var nowTimeLine =[];
 var data5hview = [];
@@ -57,7 +58,6 @@ for(var ev=minTime;ev<maxTime;ev++){
 
 									if(ev+phcon==24){
 										TomoList[0]=dataListEv[ev+phcon];
-										alert();
 									}else if(ev+phcon>=24){
 										tomoTime = ev+phcon-24;
 										TomoList[tomoTime]=TomoList[tomoTime-1]-amountDecre1h;
@@ -103,7 +103,7 @@ console.log(maxCafeAmount+"maxCafeAmount");
 if(maxCafeAmount>=onestep2){
 	console.log("overStep2");
 	console.log("Over"+overlength+"mg");
-	expr = "カフェインの摂取量が許容範囲を超えていま";
+	expr = "カフェインの摂取量が許容範囲を超えています";
 	areaColor = '#FF4300';
 }else if(maxCafeAmount>=onestep){
 	console.log("overStep1");
@@ -112,6 +112,7 @@ if(maxCafeAmount>=onestep2){
 	areaColor = '#FFF50';
 }else if(maxCafeAmount>=OneTimeSafe||maxCafeAmount>=0){
 	expr = "緑の線を目安にカフェインを摂取しましょう";
+	inf = ""
 	console.log("overSafe");
 	console.log("Over"+overlength+"mg");
 	areaColor = '#00ff7c'
@@ -129,8 +130,8 @@ function message() {
 	message = document.getElementById("message");
 	Area = document.getElementById("messageArea");
 	Area.style.backgroundColor = areaColor;
-	message.innerHTML='<h1>'+expr+'</h1>';
-};
+	message.innerHTML='<h1>'+expr+'</h1><br><h2>'+inf+'</h2>'+":";
+}
 function backSet(){
 	document.body.style.backgroundImage = 'linear-gradient(-90deg, #FD4E66, #D8FF57)';
 }

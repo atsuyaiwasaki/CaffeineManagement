@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-
-
 <html>
   <head>
     <title>CafeMane</title>
@@ -34,29 +32,38 @@
   </head>
 
   <body>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-  <ul class="nav navbar-nav navbar-right">
-    <%if session[:user_hash].blank?%>
-      <li><%= link_to 'Twitterでログイン', '/auth/twitter' %></li>
-    <%else%>
-      <li><%= link_to 'Twitterでログアウト', '/logOut' %></li>
+    <div class="container-fluid" id="con-all">
+      <div class="row" id="menu-row">
+        <div class="col-xs-11 col-md-11 col-lg-11 col-xl-11" id="menu" >
+          <div class="tittle" style="
+             color: #FFFFFF;
+             font-size: 5em;
+             font-family: "メイリオ", sans-serif;">
+          Caffeine manager</div>
+        </div>
+      </div>
+      <div class="row" id="login-row"  >
+        <div class="col-xs-1 col-md-1 col-lg-1 col-xl-1" id="login" >
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <%if session[:user_hash].blank?%>
+              <li><%= link_to 'Twitterでログイン', '/auth/twitter' %></li>
+              <%else%>
+              <li><%= link_to 'Twitterでログアウト', '/logOut' %></li>
+              <%end%>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-    <%end%>
-
-      </ul>
-
-</div>
-<div class="container1">
-  <% if flash[:alert] %>
-    <div class="alert alert-success">
-       <h1><%= @LoginUser.nickname %><%= flash[:alert] %></h1>
-        <!--%=でＨＴＭＬに表示 -->
-        <script type="text/javascripts">
-        <!-- -->
-        </script>
+      <div class="container1">
+        <% if flash[:alert] %>
+        <div class="alert alert-success">
+          <h1><%= @LoginUser.nickname %><%= flash[:alert] %></h1>
+        </div>
+        <% end %>
+        <%= yield %>
+      </div>
     </div>
-  <% end %>
-  <%= yield %>
-</div>
   </body>
 </html>

@@ -15,15 +15,18 @@ class DrinksController < ApplicationController
     @LoginUser = User.find_by(add_hash: session[:user_hash])
     #@t = @LoginUser.UserDrink.Dirnk.find_by(10)
     #@users = User.all
-    @drinks = Drink.all
+    @drinks = Drink.all.limit(5)
     @userDrinkLog = @LoginUser.user_drinks.all
+    # @userDrinkLog = @LoginUser.user_drinks.where(created_at:today)
     userweight = @LoginUser.weght
     gon.userCaffeinDayMax = userweight * 5.7
     gon.userCaffeinOneTimeMax = userweight * 3
     safeline = userweight * 3
     today = 0.day.ago.all_day
     yesterday =1.day.ago.all_day
-    drinkdata = @LoginUser.user_drinks.where(created_at:today)
+    #drinkdata = @LoginUser.user_drinks.all.where(created_at:today)
+    drinkdata = @userDrinkLog.order(created_at:"DESC").where(created_at:today)
+    @todaylog = drinkdata
     #gon.drinkdata = drinkdata.all
     puts "-----------DataCheck---------------"
     sentdata = Hash.new({})
@@ -73,7 +76,7 @@ class DrinksController < ApplicationController
       i+=1
     end
 
-    @D103 = Drink.find_by(id:104)
+    #@D103 = Drink.find_by(id:104)
     gon.drinkdataset = dataList
     #puts drinkdata.drink.name
     #gon.name_list=Drink.find(10);
@@ -103,8 +106,6 @@ class DrinksController < ApplicationController
      require 'net/http'
 
      @LoginUser = User.find_by(add_hash: session[:user_hash])
-     puts "------------put---------------"
-     puts @LoginUser.id
      u_id = @LoginUser.id
      drink_id = params[:d_id]
      User.find(u_id).user_drinks.last.destroy
