@@ -6,22 +6,47 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 #coding:utf-8
+# Drink.create(
+#   :name=>'monsterenergy',
+#   :cafeinamount=>'142',
+#   :amount=>'355',
+#   :imglink=>'//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B007V6MQJY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=cafemanawe00d-22',
+#   :outimglink=>'//ir-jp.amazon-adsystem.com/e/ir?t=cafemanawe00d-22&l=am2&o=9&a=B007V6MQJY" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;',
+#   :productlink=>'https://www.amazon.co.jp/gp/offer-listing/B007V6MQJY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B007V6MQJY&linkCode=am2&tag=cafemanawe00d-22&linkId=74b8051f935f783d32d883111e198b0a'
+#  )
+# Drink.create(
+#   :name=>'コーヒーボス　無糖ブラック',
+#   :cafeinamount=>'92',
+#   :amount=>'185',
+#   :imglink=>'//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B003OAA5IK&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=cafemanawe00d-22',
+#   :outimglink=>'//ir-jp.amazon-adsystem.com/e/ir?t=cafemanawe00d-22&l=am2&o=9&a=B003OAA5IK" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;',
+#   :productlink=>'https://www.amazon.co.jp/gp/offer-listing/B003OAA5IK/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B003OAA5IK&linkCode=am2&tag=cafemanawe00d-22&linkId=d7870d0c099fbf4c6c046a17cbb97ebf'
+# )
+#---------------------------------3/23---------------------------------------
 Drink.create(
-  :name=>'monsterenergy',
-  :cafeinamount=>'142',
-  :amount=>'355',
-  :imglink=>'//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B007V6MQJY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=cafemanawe00d-22',
-  :outimglink=>'//ir-jp.amazon-adsystem.com/e/ir?t=cafemanawe00d-22&l=am2&o=9&a=B007V6MQJY" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;',
-  :productlink=>'https://www.amazon.co.jp/gp/offer-listing/B007V6MQJY/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B007V6MQJY&linkCode=am2&tag=cafemanawe00d-22&linkId=74b8051f935f783d32d883111e198b0a'
- )
-Drink.create(
-  :name=>'コーヒーボス　無糖ブラック',
-  :cafeinamount=>'92',
-  :amount=>'185',
-  :imglink=>'//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B003OAA5IK&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=cafemanawe00d-22',
-  :outimglink=>'//ir-jp.amazon-adsystem.com/e/ir?t=cafemanawe00d-22&l=am2&o=9&a=B003OAA5IK" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;',
-  :productlink=>'https://www.amazon.co.jp/gp/offer-listing/B003OAA5IK/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B003OAA5IK&linkCode=am2&tag=cafemanawe00d-22&linkId=d7870d0c099fbf4c6c046a17cbb97ebf'
+  :name=>'メガシャキ',
+  :cafeinamount=>'100',
+  :amount=>'100',
+  :productlink=>'https://www.amazon.co.jp/gp/offer-listing/B00FLPGRLU/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B00FLPGRLU&linkCode=am2&tag=cafemanawe00d-22&linkId=e6817786e25bed7e015c21a3c0bb0984', #bluelightLink
+  :imglink=>'//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B00FLPGRLU&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=cafemanawe00d-22', #22
+  :outimglink=>'//ir-jp.amazon-adsystem.com/e/ir?t=cafemanawe00d-22&l=am2&o=9&a=B00FLPGRLU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;' #important
 )
+# Drink.create(
+#   :name=>'',
+#   :cafeinamount=>'',
+#   :amount=>'',
+#   :productlink=>'', #bluelightLink
+#   :imglink=>'', #22
+#   :outimglink=>'' #important
+# )
+# Drink.create(
+#   :name=>'',
+#   :cafeinamount=>'',
+#   :amount=>'',
+#   :imglink=>'',
+#   :outimglink=>'',
+#   :productlink=>''
+# )
 # Drink.create(
 #   :name=>'MATCH',
 #   :cafeinAmount=>'25',
