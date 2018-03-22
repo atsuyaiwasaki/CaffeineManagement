@@ -89,7 +89,7 @@
     <h2>オススメ集中ドリンク</h2>
     <div class=buttontable>
       <tbody >
-        <% @drinks.order('cafeinAmount DESC').where("cafeinAmount<?",@num).each do |drink| %>
+        <% @drinks.order('cafeinamount DESC').where("cafeinamount<?",@num).each do |drink| %>
 
             <div class=driclass>
               <button class="dributton" id='<%= drink.id %>'>
