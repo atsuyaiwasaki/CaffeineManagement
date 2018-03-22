@@ -6,7 +6,7 @@ class SessionController < ApplicationController
 
       session[:user_hash] = user.add_hash
     if user.weght.present?
-      redirect_to root_path, alert: 'こんにちは'
+      redirect_to controller: 'drinks',action: 'index' , alert: 'こんにちは'
     else
       redirect_to controller: 'new_ac' , action: 'setWei'
       #flash[alert:]  = 'がログインしました

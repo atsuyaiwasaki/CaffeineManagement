@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :drinks
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-root :to => 'drinks#index'
+root :to => 'new_ac#newAc'
   match '/index', to: 'drinks#index', via: [:get, :post]
   #match '/index',to: 'drinks#caffeinDattaSet',via:[:get,:post]
   match '/cafeMane', to: 'drinks#index', via: [:get, :post]
