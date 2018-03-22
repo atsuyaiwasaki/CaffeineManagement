@@ -3,7 +3,7 @@ class CreateDrinks < ActiveRecord::Migration[5.1]
     create_table :drinks do |t|
       t.string :name
       t.integer :cafeinamount
-      t.integer :Amount
+      t.integer :amount
 
       t.timestamps
     end
