@@ -25,6 +25,8 @@ var inf;
 var areaColor;
 var nowTimeLine =[];
 var data5hview = [];
+var overinf ="";
+var safeinf ="";
 
 console.log("testpass"+testpass);
 
@@ -34,7 +36,9 @@ for(var ini=minTime;ini<maxTime;ini++){
 	TomoList[ini] =0;
 	nowTimeLine[ini]='#00000010';
 }
-nowTimeLine[nowHour]='blue';
+if(nowHour!=0){
+	nowTimeLine[nowHour]='blue';
+}
 for(var ev=minTime;ev<maxTime;ev++){
 	//各時刻表示初期化
 	timeSet[ev]='"'+ev*evTime+':00"'
@@ -95,42 +99,137 @@ for(var ev=minTime;ev<maxTime;ev++){
 
 
 onestep = OneTimeSafe+Step;
-console.log("safe"+OneTimeSafe);
 onestep2 = OneTimeSafe+Step*2;
 safelength = OneTimeSafe-dataListEv[nowHour+1];
 overlength = dataListEv[nowHour+1]-OneTimeSafe;
-console.log(maxCafeAmount+"maxCafeAmount");
 if(maxCafeAmount>=onestep2){
-	console.log("overStep2");
-	console.log("Over"+overlength+"mg");
-	expr = "カフェインの摂取量が許容範囲を超えています";
+	expr = "カフェインの摂取量がかなり多いです<br>：水を飲むなどの対処をしましょう";
 	areaColor = '#FF4300';
 }else if(maxCafeAmount>=onestep){
-	console.log("overStep1");
-	console.log("Over"+overlength+"mg");
 	expr = "カフェインの摂取量が多いので控えましょう";
-	areaColor = '#FFF50';
+	areaColor = '#FFFF50';
 }else if(maxCafeAmount>=OneTimeSafe||maxCafeAmount>=0){
 	expr = "緑の線を目安にカフェインを摂取しましょう";
-	inf = ""
-	console.log("overSafe");
-	console.log("Over"+overlength+"mg");
+	inf = "";
 	areaColor = '#00ff7c'
 
 }else{
 	expr = "ドリンクを選んでカフェインの推移を確認しましょう";
 	areaColor = '#65b6e2';
-
 	console.log("まだ攻めれる"+safelength+"mgいけるはず")
 	console.log(nowHour+"時："+dataListEv[nowHour]);
 	console.log(nowHour+1+"時："+dataListEv[nowHour+1]);
-
 }
+
+function calc(){
+	var noinf =[];
+	var safeinflength = [] ;
+	var over1inflength = [] ;
+	var nearinf = [];
+	for(var t=0;t<=48;t++){
+		if(dataListEv[t]<=onestep&&dataListEv[t]>=80){
+			if(t>24){
+				t2 = t-24;
+				safeinflength.push(t2);
+				continue;
+			}
+			safeinflength.push(t);
+		}
+		if(dataListEv[t]>=onestep){
+			if(t>24){
+				t2 = t-24;
+				over1inflength.push(t2);
+				continue;
+			}
+			over1inflength.push(t);
+		}
+
+		if(dataListEv[t]<=80){
+			if(t>24){
+				t2 = t-24;
+				noinf.push(t2);
+				continue;
+			}
+			noinf.push(t);
+		}
+	}
+	if(over1inflength!=""){
+	overinf = "副作用："+over1inflength[0]+"時～"+over1inflength[over1inflength.length - 1]+"時";
+	console.log(over1inflength);
+	}
+	if(safeinflength!=""){
+	safeinf = "効果："+safeinflength[0]+"時～"+safeinflength[safeinflength.length - 1]+"時";
+	console.log(safeinf);
+	}
+	// return inflegth
+}
+
 function message() {
 	message = document.getElementById("message");
-	Area = document.getElementById("messageArea");
+	Area = document.getElementById("message-row");
+	overArea = document.getElementById("message-over");
+	safeArea = document.getElementById("message-safe");
+	calc();
 	Area.style.backgroundColor = areaColor;
-	message.innerHTML='<h1>'+expr+'</h1><br><h2>'+inf+'</h2>'+":";
+	message.innerHTML=expr;
+		var sDiv = document.createElement('div');
+		sDiv.id = 'safeM';
+		sDiv.className = 'safeM ';
+	if(safeinf!=""){
+
+		safeArea.appendChild(sDiv);
+		var sDivEl = document.getElementById("safeM");
+		sDivEl.innerHTML = safeinf+'<hr class="meshr">';
+		var inflist = document.createElement('div');
+		inflist.className = 'list-group';
+		sDiv.appendChild(inflist);
+
+		var listitem1 = document.createElement('a');
+		listitem1.className = 'list-group-item';
+		listitem1.innerHTML = "・覚醒作用";
+		inflist.appendChild(listitem1);
+
+		var listitem2 = document.createElement('a');
+		listitem2.className = 'list-group-item';
+		listitem2.innerHTML = "・集中力向上";
+		inflist.appendChild(listitem2);
+
+		var listitem3 = document.createElement('a');
+		listitem3.className = 'list-group-item';
+		listitem3.innerHTML = "・記憶力向上";
+		inflist.appendChild(listitem3);
+
+	}
+		var oDiv = document.createElement('div');
+		oDiv.id = 'overM';
+		oDiv.className = 'overM';
+		if(overinf!=""){
+			overArea.appendChild(oDiv);
+			var oDivEl = document.getElementById("overM");
+			oDivEl.innerHTML = overinf+'<hr class="meshr">';
+			var inflist = document.createElement('div');
+
+			inflist.className = 'list-group';
+			oDiv.appendChild(inflist);
+
+			var listitem1 = document.createElement('a');
+			listitem1.className = 'list-group-item';
+			listitem1.innerHTML = "・頭痛";
+			inflist.appendChild(listitem1);
+
+			var listitem2 = document.createElement('a');
+			listitem2.className = 'list-group-item';
+			listitem2.innerHTML = "・疲労感";
+			inflist.appendChild(listitem2);
+
+			var listitem3 = document.createElement('a');
+			listitem3.className = 'list-group-item';
+			listitem3.innerHTML = "・軽度の鬱";
+			inflist.appendChild(listitem3);
+
+		}
+// Now create and append to iDiv
+
 }
 function backSet(){
 	document.body.style.backgroundImage = 'linear-gradient(-90deg, #FD4E66, #D8FF57)';
@@ -374,14 +473,7 @@ window.onload = function() {
 };
 var i=nowHour;
 var setC  = "blue"
-function setNowTime(){
-  nowDisplay=[i-3+":00",i-2+":00",i-1+":00",i+":00",i+1+":00",i+2+"00",i+3+"00"];
-  config.options.scales.xAxes[0].gridLines.color=["","","", setC, "", "",""];
-  config.options.scales.xAxes[0].gridLines.lineWidth=null;
-  config.options.scales.yAxes[0].gridLines.lineWidth=null;
-  config.data.labels=nowDisplay;
-  window.myLine.update();
-}
+
 function setTime(){
   console.log(nowHour);
 
@@ -395,24 +487,7 @@ function setTime(){
   config.data.labels=Daytime;
   window.myLine.update();
 }
-function setWeight(){
-  config.options.scales.yAxes[0].ticks.max+=30;
-  window.myLine.update();
-}
-function registDrink2() {
-  config.data.datasets[0].data[1]+=100;
-  config.data.datasets[0].data[2]+=50;
-  config.data.datasets[0].data[3]+=30;
-        //return randomScalingFactor();
-  window.myLine.update();
-}
-function registDrink3() {
-  config.data.datasets[0].data[3]+=50;
-  config.data.datasets[0].data[4]+=20;
-  config.data.datasets[0].data[5]+=10;
-        //return randomScalingFactor();
-  window.myLine.update();
-}
+
 //-----------------GONのテスト-----------------------------------
 function gontest(){
 

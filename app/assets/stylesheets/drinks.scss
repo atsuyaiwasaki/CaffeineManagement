@@ -9,6 +9,46 @@ html, body{
   height: 100%;
   font-family: sans-serif;
 }
+.meshr{
+  border-top: midiam;
+}
+#message{
+  font-size: 3em;
+  font-family: "メイリオ",sans-serif;
+}
+#message-row{
+  margin: 1em;
+  border-radius: 7px;
+
+
+}
+#message-safe{
+  margin: 1em;
+  border-radius: 7px;
+  height:100%;
+  width:auto;
+  background-color: rgba(0,186,255,0.8);
+}
+
+#message-over{
+  margin: 1em;
+  border-radius: 7px;
+  height:100%;
+  width:auto;
+  background-color: rgba(255,120,0,0.8);
+}
+
+#safeM{
+  color: #FFFFFF;
+  font-size: 3em;
+  font-family: "メイリオ",sans-serif;
+}
+
+#overM{
+  color: #FFFFFF;
+  font-size: 3em;
+  font-family: "メイリオ",sans-serif;
+}
 #log-row{
   width: 100%;
   height:auto;
@@ -28,6 +68,10 @@ html, body{
 
 .suri{
   filter: blur(10px);
+}
+#logbtn{
+  margin: 1em;
+  font-size:1em;
 }
 #message-con{
   margin: 0;
@@ -52,7 +96,7 @@ html, body{
    border-radius: 7px;
 }
 #graph{
-  margin: 0;
+  margin: 1em;
 }
 .buttontable{
   float:none;
@@ -95,4 +139,7 @@ html, body{
   text-align: left;
   font-weight: 50%;
   font-size: 150%;
+}
+.logtime{
+  text-align: right;
 }

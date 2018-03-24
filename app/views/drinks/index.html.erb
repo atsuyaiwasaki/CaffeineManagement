@@ -2,11 +2,15 @@
   <div class="col-xs-12 col-md-12 col-lg-12 col-xl-12" id="message-con" >
     <div id="messageArea"><div id="message">defolt</div></div>
   </div>
+  <div class="col-xs-12 col-md-12 col-lg-4 col-xl-4" id="message-safe" >
+  </div>
+  <div class="col-xs-12 col-md-12 col-lg-4 col-xl-4" id="message-over" >
+  </div>
 </div>
 <div class="row" id="log-row"  >
 
   <div class="col-xs-12 col-md-12 col-lg-3 col-xl-3" id="log" >
-    <a><h1>今日の記録</h1></a>
+    <h1>今日の記録</h1>
     <%  @todaylog.limit(3).each do |todaylog| %>
     <% toDri = Drink.find_by(id:todaylog.drink_id)%>
     <% tolog = todaylog.created_at%>
@@ -17,7 +21,8 @@
                 <img src="<%= toDri.outimglink %>" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;"><hr width="85%" color="#CCCCCC">
               </div>
               <p class=product><%= toDri.name%></p>
-               <p class=cafeinAmount> カフェイン量：<%= toDri.cafeinamount %> mg</p>
+              <p class=cafeinAmount> カフェイン量：<%= toDri.cafeinamount %> mg</p>
+              <p class=logtime><input id=logbtn type = "button" value="最新の記録を消す 記録：<%= tolog.hour %> 時"　></input> </p>
         </button>
       </div>
       <script type="text/javascript">
@@ -50,7 +55,7 @@
   </div>
 
 <!-- <div class="row" id="graph-row" > -->
-  <div class="col-xs-12 col-md-12 col-lg-9 col-xl-9" id="graph" >
+  <div class="col-xs-12 col-md-12 col-lg-6 col-xl-6" id="graph" >
     <div class="chartjs-size-monitor" style ="position:absolute; left: 0px; top: 0px; right: 0px;
       bottom: 0px; overflow: hidden; pointer-events: none;
       visibility: hidden; z-index: -1; ">
