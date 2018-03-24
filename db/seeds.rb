@@ -34,11 +34,11 @@
 #--------------------------------------------------------------------------
 Drink.create(
   :name=>'オロナミンC',
-  :cafeinAmount=>'18',
-  :Amount=>'120',
-  :productLink=>'https://www.amazon.co.jp/gp/offer-listing/B001HYT33S/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B001HYT33S&linkCode=am2&tag=cafemanawe00d-22&linkId=8ece0883f79337c9326c78f484bac731',
-  :imgLink=>'//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B001HYT33S&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=cafemanawe00d-22',
-  :outimgLink=>'//ir-jp.amazon-adsystem.com/e/ir?t=cafemanawe00d-22&l=am2&o=9&a=B001HYT33S" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;'
+  :cafeinamount=>'18',
+  :amount=>'120',
+  :productlink=>'https://www.amazon.co.jp/gp/offer-listing/B001HYT33S/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B001HYT33S&linkCode=am2&tag=cafemanawe00d-22&linkId=8ece0883f79337c9326c78f484bac731',
+  :imglink=>'//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B001HYT33S&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=cafemanawe00d-22',
+  :outimglink=>'//ir-jp.amazon-adsystem.com/e/ir?t=cafemanawe00d-22&l=am2&o=9&a=B001HYT33S" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;'
 )
 
 # Drink.create(
