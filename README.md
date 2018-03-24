@@ -1,24 +1,17 @@
-# README
+カフェインマネージャー
+=========================
+カフェインマネージャーとは？{　カフェマネ(仮)　}
+----------------------------------------------
+>エナジードリンクで頑張る人にカフェインの効果的な利用をサポートするwebサービスです
+>Twitterによるログインでアカウントの連携が可能です
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+利用方法
+----------------------------------------------
+*twitterによるログイン
+*今から飲むエナジードリンクを選択
 
-Things you may want to cover:
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+リンク
+----------------------------------------------
+[カフェインマネージャー](https://caffee171225.herokuapp.com/)
