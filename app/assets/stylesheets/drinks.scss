@@ -13,13 +13,13 @@ html, body{
   border-top: midiam;
 }
 #message{
-  font-size: 3em;
+  font-size: 2em;
   font-family: "メイリオ",sans-serif;
 }
 #message-row{
   margin: 1em;
   border-radius: 7px;
-
+  max-height: 10%;
 
 }
 #message-safe{
@@ -31,7 +31,7 @@ html, body{
 }
 
 #message-over{
-  margin: 1em;
+  margin: 2em;
   border-radius: 7px;
   height:100%;
   width:auto;
@@ -40,13 +40,13 @@ html, body{
 
 #safeM{
   color: #FFFFFF;
-  font-size: 3em;
+  font-size: 2em;
   font-family: "メイリオ",sans-serif;
 }
 
 #overM{
   color: #FFFFFF;
-  font-size: 3em;
+  font-size: 2em;
   font-family: "メイリオ",sans-serif;
 }
 #log-row{

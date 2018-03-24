@@ -22,7 +22,7 @@
               </div>
               <p class=product><%= toDri.name%></p>
               <p class=cafeinAmount> カフェイン量：<%= toDri.cafeinamount %> mg</p>
-              <p class=logtime><input id=logbtn type = "button" value="最新の記録を消す 記録：<%= tolog.hour %> 時"　></input> </p>
+              <p class=logtime><input class=logbtn type = "button" value="最新の記録を消す 記録：<%= tolog.hour %> 時"　></input> </p>
         </button>
       </div>
       <script type="text/javascript">
@@ -151,12 +151,12 @@
       飲んだ時間　<%= drinkLog.created_at%><br>
       <% end %>
 </div>
-<input id=logbtn type = "button" value="最新の記録を消す"　></input>
+<input class=logbtn type = "button" value="最新の記録を消す"　></input>
 <input id=csschan type = "button" value="css"　></input>
 
   <script type="text/javascript">
     $(function() {
-        $("#logbtn").click(function(){
+        $(".logbtn").click(function(){
             $.ajax({
                 type: "POST",
                 port: 3000,
