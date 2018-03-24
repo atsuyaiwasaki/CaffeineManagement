@@ -22,15 +22,25 @@
 #   :outimglink=>'//ir-jp.amazon-adsystem.com/e/ir?t=cafemanawe00d-22&l=am2&o=9&a=B003OAA5IK" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;',
 #   :productlink=>'https://www.amazon.co.jp/gp/offer-listing/B003OAA5IK/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B003OAA5IK&linkCode=am2&tag=cafemanawe00d-22&linkId=d7870d0c099fbf4c6c046a17cbb97ebf'
 # )
-#---------------------------------3/23---------------------------------------
+# #---------------------------------3/23---------------------------------------
+# Drink.create(
+#   :name=>'メガシャキ',
+#   :cafeinamount=>'100',
+#   :amount=>'100',
+#   :productlink=>'https://www.amazon.co.jp/gp/offer-listing/B00FLPGRLU/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B00FLPGRLU&linkCode=am2&tag=cafemanawe00d-22&linkId=e6817786e25bed7e015c21a3c0bb0984', #bluelightLink
+#   :imglink=>'//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B00FLPGRLU&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=cafemanawe00d-22', #22
+#   :outimglink=>'//ir-jp.amazon-adsystem.com/e/ir?t=cafemanawe00d-22&l=am2&o=9&a=B00FLPGRLU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;' #important
+# )
+#--------------------------------------------------------------------------
 Drink.create(
-  :name=>'メガシャキ',
-  :cafeinamount=>'100',
-  :amount=>'100',
-  :productlink=>'https://www.amazon.co.jp/gp/offer-listing/B00FLPGRLU/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B00FLPGRLU&linkCode=am2&tag=cafemanawe00d-22&linkId=e6817786e25bed7e015c21a3c0bb0984', #bluelightLink
-  :imglink=>'//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B00FLPGRLU&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=cafemanawe00d-22', #22
-  :outimglink=>'//ir-jp.amazon-adsystem.com/e/ir?t=cafemanawe00d-22&l=am2&o=9&a=B00FLPGRLU" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;' #important
+  :name=>'オロナミンC',
+  :cafeinAmount=>'18',
+  :Amount=>'120',
+  :productLink=>'https://www.amazon.co.jp/gp/offer-listing/B001HYT33S/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B001HYT33S&linkCode=am2&tag=cafemanawe00d-22&linkId=8ece0883f79337c9326c78f484bac731',
+  :imgLink=>'//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B001HYT33S&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=cafemanawe00d-22',
+  :outimgLink=>'//ir-jp.amazon-adsystem.com/e/ir?t=cafemanawe00d-22&l=am2&o=9&a=B001HYT33S" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;'
 )
+
 # Drink.create(
 #   :name=>'',
 #   :cafeinamount=>'',
